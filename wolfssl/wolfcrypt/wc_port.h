@@ -75,8 +75,7 @@
     #include <ti/sysbios/knl/Semaphore.h>
 #else
     #ifndef SINGLE_THREADED
-        #define WOLFSSL_PTHREADS
-        #include <pthread.h>
+        #define SINGLE_THREADED
     #endif
     #if defined(OPENSSL_EXTRA) || defined(GOAHEAD_WS)
         #include <unistd.h>      /* for close of BIO */
@@ -102,7 +101,7 @@
     #elif defined(USE_WINDOWS_API)
         typedef CRITICAL_SECTION wolfSSL_Mutex;
     #elif defined(WOLFSSL_PTHREADS)
-        typedef pthread_mutex_t wolfSSL_Mutex;
+        typedef int wolfSSL_Mutex;
     #elif defined(THREADX)
         typedef TX_MUTEX wolfSSL_Mutex;
     #elif defined(MICRIUM)
